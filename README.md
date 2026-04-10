@@ -15,6 +15,14 @@
 - **Lutris**: 0.5.22
 - **Wine**: wine-staging 11.6
 
+### 動作しなかった Wine バージョン
+
+| バージョン | 失敗の原因 |
+|---|---|
+| wine-ge-8-26 | winetricks の cmd.exe 起動に X11 ディスプレイが必要で失敗 |
+| wine-staging-11.2 | Lutris API から削除済みで取得不可 |
+| wine 7.x系 | Lutris 環境で子プロセスが kernel32.dll を読めない |
+
 ---
 
 ## 前提条件
