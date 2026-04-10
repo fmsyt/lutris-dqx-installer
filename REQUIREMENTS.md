@@ -101,6 +101,6 @@
 ---
 
 ## 不明・未確認の要件
-- **ハードウェア要件（GPU/VRAM/RAM等）**: 公式サイトを参照 https://hiroba.dqx.jp/sc/public/playguide/pcspec/
+- **ハードウェア要件（GPU/VRAM/RAM等）**: 公式サイトを参照 https://www.dqx.jp/online/start_game/product/windows.php
 - **Wayland対応**: Wayland (XWayland経由) で動作確認済み。X11単独環境は未確認
 - **SteamDeck**: 動作するが日本語入力不可（既知の問題）

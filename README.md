@@ -130,7 +130,7 @@ export QT_IM_MODULE=fcitx
 ## ハードウェア要件
 
 GPU・VRAM・RAM等の要件は公式サイトを参照してください:
-https://hiroba.dqx.jp/sc/public/playguide/pcspec/
+https://www.dqx.jp/online/start_game/product/windows.php
 
 ---
 
