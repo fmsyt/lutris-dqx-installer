@@ -1,0 +1,13 @@
+# TODO
+
+## 検証待ち
+
+- [ ] `lib32-freetype2` なしで再インストールして挙動を確認する
+  - 文字化けだけで済むか、クラッシュ・起動失敗になるか
+  - 結果に応じて REQUIREMENTS.md の記載を更新する
+
+## 未確認の要件（REQUIREMENTS.md に反映予定）
+
+- [ ] GPU要件を調べて記録する
+- [ ] VRAM / RAM 要件を調べて記録する
+- [x] Wayland (XWayland) 環境での動作確認 → ✅ X11・Wayland両方で動作確認済み

@@ -1,0 +1,83 @@
+description: Dragon Quest X Online - Benchmark
+game_slug: dragon-quest-x-online-benchmark
+gogslug: ''
+humblestoreid: ''
+installer_slug: dragon-quest-x-online-benchmark
+name: Dragon Quest X Online
+notes: "\u5B9F\u884C\u3059\u308B\u524D\u306BWine\u306E\u30D0\u30FC\u30B8\u30E7\u30F3\
+  \u304C\u30C7\u30D5\u30A9\u30EB\u30C8\u3067\u3042\u308B\u3053\u3068\u3092\u78BA\u8A8D\
+  \u3057\u3066\u304F\u3060\u3055\u3044\u3002\r\n\u30A4\u30F3\u30B9\u30C8\u30FC\u30EB\
+  \u5F8C\u306F\u305D\u306E\u307E\u307E\u5B9F\u969B\u306E\u30B2\u30FC\u30E0\u306B\u3082\
+  \u4F7F\u7528\u3067\u304D\u307E\u3059\u3002\r\n\r\n\u65E2\u77E5\u306E\u554F\u984C\
+  \r\n\u30FBSteamDeck\u3067\u306F\u65E5\u672C\u8A9E\u5165\u529B\u304C\u3067\u304D\u307E\
+  \u305B\u3093\r\n\u30FBWine\u306E\u30D0\u30FC\u30B8\u30E7\u30F3\u3092\u3042\u3052\
+  \u305F\u3044\u5834\u5408\u306F\u4F5C\u308A\u76F4\u3057\u3066\u304F\u3060\u3055\u3044\
+  \uFF08\u30E0\u30FC\u30D3\u30FC\u518D\u751F\u304C\u3067\u304D\u306A\u304F\u306A\u308A\
+  \u307E\u3059\uFF09"
+runner: wine
+script:
+  files:
+  - bench_installer: https://download.dqx.jp/dqbenchmark/DQXBenchmarkInstaller.exe
+  game:
+    exe: drive_c/Program Files (x86)/SquareEnix/DRAGON QUEST X BENCHMARK/Game/DQXBenchmark.exe
+    prefix: $GAMEDIR
+  installer:
+  - execute:
+      description: 既存のプレフィックスを削除（作り直すため）
+      command: "[ -d \"$GAMEDIR\" ] && rm -rf \"$GAMEDIR\" && echo 'Removed existing prefix' || echo 'No existing prefix, skipping'"
+  - task:
+      name: create_prefix
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      app: quartz
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      app: wininet
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      app: winhttp
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      app: ie8
+      prefix: $GAMEDIR
+  - task:
+      description: Avoiding googletagmanager ScriptError
+      key: '*'
+      name: set_regedit
+      path: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap\Domains\googletagmanager.com\www
+      prefix: $GAMEDIR
+      type: REG_DWORD
+      value: '00000004'
+  - task:
+      name: winetricks
+      app: dxtrans
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      app: fakejapanese_ipamona
+      prefix: $GAMEDIR
+  - task:
+      name: winetricks
+      app: fakejapanese_vlgothic
+      prefix: $GAMEDIR
+  - task:
+      description: Running DQX Installer
+      executable: bench_installer
+      name: wineexec
+      prefix: $GAMEDIR
+  system:
+    env:
+      LC_ALL: ja_JP.UTF-8
+  wine:
+    version: wine-staging-11.6-x86_64
+    overrides:
+      wininet: b
+slug: dragon-quest-x-online-benchmark
+steamid: null
+version: Benchmark
+year: 2012
+
