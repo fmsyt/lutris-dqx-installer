@@ -9,5 +9,4 @@
 ## 未確認の要件（REQUIREMENTS.md に反映予定）
 
 - [ ] GPU要件を調べて記録する
-- [ ] VRAM / RAM 要件を調べて記録する
-- [x] Wayland (XWayland) 環境での動作確認 → ✅ X11・Wayland両方で動作確認済み
+- [ ] X11環境での動作を確認する
