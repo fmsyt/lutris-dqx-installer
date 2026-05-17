@@ -23,28 +23,31 @@ script:
         exe: drive_c/Program Files (x86)/SquareEnix/DRAGON QUEST X BENCHMARK/Game/DQXBenchmark.exe
         prefix: $GAMEDIR
     installer:
-        - execute:
-              description: 既存のプレフィックスを削除（作り直すため）
-              command: '[ -d "$GAMEDIR" ] && rm -rf "$GAMEDIR" && echo ''Removed existing prefix'' || echo ''No existing prefix, skipping'''
         - task:
               name: create_prefix
               prefix: $GAMEDIR
+              arch: win32
         - task:
               name: winetricks
               app: quartz
               prefix: $GAMEDIR
+              arch: win32
+
         - task:
               name: winetricks
               app: wininet
               prefix: $GAMEDIR
+              arch: win32
         - task:
               name: winetricks
               app: winhttp
               prefix: $GAMEDIR
+              arch: win32
         - task:
               name: winetricks
               app: ie8
               prefix: $GAMEDIR
+              arch: win32
         - task:
               description: Avoiding googletagmanager ScriptError
               key: "*"
@@ -53,28 +56,33 @@ script:
               prefix: $GAMEDIR
               type: REG_DWORD
               value: "00000004"
+              arch: win32
         - task:
               name: winetricks
               app: dxtrans
               prefix: $GAMEDIR
+              arch: win32
         - task:
               name: winetricks
               app: fakejapanese_ipamona
               prefix: $GAMEDIR
+              arch: win32
         - task:
               name: winetricks
               app: fakejapanese_vlgothic
               prefix: $GAMEDIR
+              arch: win32
         - task:
               description: Running DQX Installer
               executable: bench_installer
               name: wineexec
               prefix: $GAMEDIR
+              arch: win32
     system:
         env:
             LC_ALL: ja_JP.UTF-8
     wine:
-        version: wine-staging-11.6-x86_64
+        # version: wine-staging-11.6-x86_64
         overrides:
             wininet: b
 slug: dragon-quest-x-online-benchmark
